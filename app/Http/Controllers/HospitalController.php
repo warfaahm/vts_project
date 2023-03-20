@@ -14,7 +14,8 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        //
+        $data = HospitalResource::collection(Hospital::all());
+        return $this->success($data);
     }
 
     /**
@@ -32,31 +33,28 @@ class HospitalController extends Controller
             'ward_id' => $request->ward_id,
         ]);
 
-        return new HospitalResource($hospital);
+        $data = new HospitalResource($hospital);
+        return $this->success($data);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Hospital $hospital)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        $data = new HospitalResource($hospital);
+        return $this->success($data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Hospital $hospital)
     {
-        //
+        $hospital->update($request->all());
+
+        $data =  new HospitalResource($hospital);
+        return $this->success($data);
     }
 
     /**

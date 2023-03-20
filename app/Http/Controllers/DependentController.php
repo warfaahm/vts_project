@@ -43,7 +43,8 @@ class DependentController extends Controller
             'relationship' => $request->relationship,
         ]);
 
-        return new DependentResource($dependent);
+        $data = new DependentResource($dependent);
+        return $this->success($data);
     }
 
     /**
@@ -70,7 +71,8 @@ class DependentController extends Controller
 
         $dependent->update($request->all());
 
-        return new DependentResource($dependent);
+        $data =  new DependentResource($dependent);
+        return $this->success($data);
     }
 
     /**
