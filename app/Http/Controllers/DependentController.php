@@ -55,10 +55,6 @@ class DependentController extends Controller
             return $this->error('', 'You are not authorized to make this request', 403);
         }
 
-        if (!$dependent){
-            return $this->error(null, 'Dependent not found', 404);
-        }
-
         $data = new DependentResource($dependent);
         return $this->success($data);
     }
