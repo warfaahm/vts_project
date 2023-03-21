@@ -15,7 +15,17 @@ class VaccineResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'vaccine' => $this,
+            'id' => $this->id,
+            'name' => $this->vaccine_name,
+            'manufacturer' => $this->manufacturer,
+            'contains' => $this->contains,
+            'dosage' => $this->dosage,
+            'age_range' => $this->age_range,
+            'duration_1' => $this->dose_1_duration,
+            'duration_2' => $this->dose_2_duration,
+            'duration_3' => $this->dose_3_duration,
+            'validity_duration' => $this->validity_duration,
+            'price' => $this->price,
             'disease' => $this->diseases,
         ];
     }

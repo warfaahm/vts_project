@@ -17,6 +17,6 @@ class Disease extends Model
 
     public function vaccines(): BelongsToMany
     {
-        return $this->belongsToMany(Vaccine::class, 'disease_id');
+        return $this->belongsToMany(Vaccine::class);
     }
 }

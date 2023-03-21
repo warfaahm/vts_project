@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreHospitalRequest;
 use App\Http\Resources\HospitalResource;
 use App\Models\Hospital;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 
 class HospitalController extends Controller
 {
+    use HttpResponses;
     /**
      * Display a listing of the resource.
      */

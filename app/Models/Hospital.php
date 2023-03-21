@@ -34,7 +34,7 @@ class Hospital extends Model
         return $this->hasMany(Healthcare_provider::class, 'hospital_id');
     }
 
-    public function subCounty(): BelongsTo
+    public function ward(): BelongsTo
     {
         return $this->belongsTo(Ward::class, 'ward_id');
     }

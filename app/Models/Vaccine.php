@@ -17,7 +17,6 @@ class Vaccine extends Model
         'contains',
         'dosage',
         'age_range',
-        'disease_id',
         'dose_1_duration',
         'dose_2_duration',
         'dose_3_duration',

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('manufacturer');
             $table->string('contains');
             $table->integer('dosage');
-            $table->string('age range');
-            $table->unsignedBigInteger('disease_id');
+            $table->string('age_range');
+            // $table->unsignedBigInteger('disease_id');
             $table->integer('dose_1_duration')->nullable();
             $table->integer('dose_2_duration')->nullable();
             $table->integer('dose_3_duration')->nullable();
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->decimal('price', 8,2);
             $table->timestamps();
 
-            $table->foreign('disease_id')->references('id')->on('diseases');
+            // $table->foreign('disease_id')->references('id')->on('diseases');
         });
     }
 

@@ -53,6 +53,7 @@ Route::prefix('/user')->group(function (){
 // Admin API Routes
 Route::prefix('/admin')->group(function (){
     Route::post('/login', [\App\Http\Controllers\AuthAdminController::class, 'login']);
+    // Route::post('/register', [\App\Http\Controllers\AuthAdminController::class, 'register']);
 
     Route::middleware(['auth:sanctum', 'auth.admin'])->group(function (){
 
@@ -63,20 +64,20 @@ Route::prefix('/admin')->group(function (){
         Route::get('/hospital/{hospital}', [\App\Http\Controllers\HospitalController::class, 'show']);
         Route::patch('/hospital/{hospital}', [\App\Http\Controllers\HospitalController::class, 'update']);
 
-        Route::post('/dependent', [\App\Http\Controllers\DiseaseController::class, 'store']);
-        Route::get('/dependent', [\App\Http\Controllers\DiseaseController::class, 'index']);
-        Route::get('/dependent/{dependent}', [\App\Http\Controllers\DiseaseController::class, 'show']);
-        Route::patch('/dependent/{dependent}', [\App\Http\Controllers\DiseaseController::class, 'update']);
+        Route::post('/disease', [\App\Http\Controllers\DiseaseController::class, 'store']);
+        Route::get('/disease', [\App\Http\Controllers\DiseaseController::class, 'index']);
+        Route::get('/disease/{disease}', [\App\Http\Controllers\DiseaseController::class, 'show']);
+        Route::patch('/disease/{disease}', [\App\Http\Controllers\DiseaseController::class, 'update']);
 
         Route::post('/vaccine', [\App\Http\Controllers\VaccineController::class, 'store']);
         Route::get('/vaccine', [\App\Http\Controllers\VaccineController::class, 'index']);
         Route::get('/vaccine/{vaccine}', [\App\Http\Controllers\VaccineController::class, 'show']);
         Route::patch('/vaccine/{vaccine}', [\App\Http\Controllers\VaccineController::class, 'update']);
 
-        Route::post('admin', [\App\Http\Controllers\AuthAdminController::class, 'register']);
-        Route::get('admin', [\App\Http\Controllers\AuthAdminController::class, 'index']);
-        Route::get('admin/{id}', [\App\Http\Controllers\AuthAdminController::class, 'show']);
-        Route::delete('admin/{admin}', [\App\Http\Controllers\AuthAdminController::class, 'destroy']);
+        Route::post('/register', [\App\Http\Controllers\AuthAdminController::class, 'register']);
+        Route::get('/admin', [\App\Http\Controllers\AuthAdminController::class, 'index']);
+        Route::get('/admin/{id}', [\App\Http\Controllers\AuthAdminController::class, 'show']);
+        Route::delete('/admin/{admin}', [\App\Http\Controllers\AuthAdminController::class, 'destroy']);
 
         Route::post('/provider', [\App\Http\Controllers\AuthProviderController::class, 'register']);
         Route::get('/provider', [\App\Http\Controllers\AuthProviderController::class, 'index']);

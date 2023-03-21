@@ -23,7 +23,7 @@ class StoreHospitalRequest extends FormRequest
     {
         return [
             'hospital_name' => ['required', 'string', 'max:255'],
-            'phone_no' => ['required', 'string'],
+            'phone_no' => ['required', 'string', 'unique:hospitals'],
             'address' => ['required', 'string'],
             'slots' => ['required', 'integer'],
             'ward_id' => ['required', 'exists:wards,id'],

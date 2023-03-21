@@ -50,7 +50,7 @@ class VaccineController extends Controller
 
     public function index()
     {
-        $data = VaccineResource::collection();
+        $data = VaccineResource::collection(Vaccine::all());
 
         return $this->success($data);
     }

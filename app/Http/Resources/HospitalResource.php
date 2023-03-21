@@ -20,10 +20,7 @@ class HospitalResource extends JsonResource
             'phone_no' => $this->phone_no,
             'address' => $this->address,
             'slots' => $this->slots,
-            'ward' => [
-                'id' => $this->ward->id,
-                'name' => $this->ward->ward_name,
-            ],
+            'ward' => $this->ward,
 
         ];
     }
