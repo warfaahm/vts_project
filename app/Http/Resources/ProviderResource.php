@@ -15,7 +15,10 @@ class ProviderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'user' => $this,
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'role' => $this->role,
             'hospital' => $this->hospital,
         ];
     }

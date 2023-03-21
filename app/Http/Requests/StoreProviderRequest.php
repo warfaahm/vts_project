@@ -23,7 +23,7 @@ class StoreProviderRequest extends FormRequest
     {
         return [
             'name' =>['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255', 'unique:healthcare_providers'],
             'password' => ['required', 'min:6', 'string'],
             'role' => ['required', 'in:admin,staff'],
             'hospital_id' => ['required', 'exists:hospitals,id'],
