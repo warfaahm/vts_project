@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreVaccineRequest;
 use App\Http\Resources\VaccineResource;
 use App\Models\Vaccine;
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 
 class VaccineController extends Controller
 {
+    use HttpResponses;
 
     public function store(StoreVaccineRequest $request)
     {
@@ -29,6 +31,27 @@ class VaccineController extends Controller
         $vaccine->diseases()->attach($request->disease_id);
 
         $data = new VaccineResource($vaccine);
+        return $this->success($data);
+    }
+
+    public function update(Request $request, Vaccine $vaccine)
+    {
+        $vaccine->update($request->all());
+
+        $data =  new VaccineResource($vaccine);
+        return $this->success($data);
+    }
+
+    public function show(Vaccine $vaccine)
+    {
+        $data = new VaccineResource($vaccine);
+        return $this->success($data);
+    }
+
+    public function index()
+    {
+        $data = VaccineResource::collection();
+
         return $this->success($data);
     }
 }

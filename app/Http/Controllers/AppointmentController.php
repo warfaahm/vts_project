@@ -15,7 +15,9 @@ class AppointmentController extends Controller
      */
     public function index()
     {
-
+        return AppointmentResource::collection(
+            Appointment::where('hospital_id', Auth::user()->hospital_id)->orderBy('date', 'desc')->get()
+        );
     }
 
     public function indexForUser()
@@ -52,6 +54,10 @@ class AppointmentController extends Controller
      */
     public function show(Appointment $appointment)
     {
+        if (Auth::user()->hospital_id !== $appointment->hospital_id){
+            return $this->error('', 'You are not authorized to make this request', 403);
+        }
+
         return new AppointmentResource($appointment);
     }
 
@@ -70,8 +76,11 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
-        $appointment->update($request->all());
+        if (Auth::user()->hospital_id !== $appointment->hospital_id){
+            return $this->error('', 'You are not authorized to make this request', 403);
+        }
 
+        $appointment->update($request->all());
         return new AppointmentResource($appointment);
     }
 

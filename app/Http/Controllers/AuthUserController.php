@@ -61,4 +61,27 @@ class AuthUserController extends Controller
 
         ]);
     }
+
+    public function profile()
+    {
+        $data = User::where('id', Auth::user()->id);
+
+        return response()->json([
+            'success' => true,
+            'data' => $data,
+        ]);
+    }
+
+
+    public function updateProfile(Request $request)
+    {
+        $data = User::where('id', Auth::user()->id);
+        $data->update($request->all());
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Profile Update Successfull',
+            'data' => $data,
+        ]);
+    }
 }

@@ -42,4 +42,12 @@ class DiseaseController extends Controller
         $data = new DiseaseResource($disease);
         return $this->success($data);
     }
+
+    public function update(Request $request, Disease $disease)
+    {
+        $disease->update($request->all());
+
+        $data =  new DiseaseResource($disease);
+        return $this->success($data);
+    }
 }

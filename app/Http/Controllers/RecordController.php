@@ -6,6 +6,8 @@ use App\Http\Requests\StoreRecordRequest;
 use App\Http\Resources\RecordResource;
 use App\Models\Dependent;
 use App\Models\Record;
+use App\Models\Vaccine;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,10 +43,29 @@ class RecordController extends Controller
     {
         $request->validated($request->all());
 
+        $vaccine = Vaccine::findOrFail($request->vaccine_id);
+        $dosage = $vaccine->dosage;
+        $duration1 = $vaccine->dose_1_duration;
+        $duration2 = $vaccine->dose_2_duration;
+        $duration3 = $vaccine->dose_3_duration;
+
+        if ($dosage == $request->dose_no) {
+            $next_date = null;
+        }
+        elseif ($dosage > $request->dose_no && $request->dose_no == 1 ){
+            $next_date = Carbon::parse($request->date)->addDays($duration1 * 7);
+        }
+        elseif ($dosage > $request->dose_no && $request->dose_no == 2 ){
+            $next_date = Carbon::parse($request->date)->addDays($duration2 * 7);
+        }
+        elseif ($dosage > $request->dose_no && $request->dose_no == 3 ){
+            $next_date = Carbon::parse($request->date)->addDays($duration3 * 7);
+        }
+
         $record = Record::create([
             'hospital_id' => Auth::user()->hospital_id,
             'date' => $request->date,
-            'next_due_date' => $request->next_due_date,
+            'next_due_date' => $next_date,
             'dose_no' => $request->dose_no,
             'patient_id' => $request->patient_id,
             'dependent_id' => $request->dependent_id,

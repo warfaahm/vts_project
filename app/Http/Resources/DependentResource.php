@@ -25,13 +25,7 @@ class DependentResource extends JsonResource
                 'dob' => $this->dob,
                 'relationship' => $this->relationship,
             ],
-            'parent' => [
-                'id' => $this->patient->id,
-                'first_name' => $this->patient->first_name,
-                'last_name' => $this->patient->last_name,
-                'nat_id_no' => $this->patient->nat_id_no,
-                'phone_no' => $this->patient->phone_no,
-            ],
+            'parent' => $this->patient,
         ];
     }
 }
