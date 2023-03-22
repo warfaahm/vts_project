@@ -26,7 +26,7 @@ class StoreRecordRequest extends FormRequest
         return [
             'date' => ['required', 'date', new RecordRule($this->patient_id, $this->dependent_id, $this->vaccine_id, $this->dose_no, $this->date)],
             'dose_no' => ['required', new DoseNoRule($this->patient_id, $this->dependent_id, $this->vaccine_id, $this->dose_no)],
-            'next_due_date' => ['required', 'date', 'after:date'],
+            'next_due_date' => ['date', 'after:date'],
             'patient_id' => ['exists:users,id'],
             'dependent_id' => ['exists:dependents,id'],
             'vaccine_id' => ['required', 'exists:vaccines,id'],
