@@ -28,7 +28,10 @@ class AuthProviderController extends Controller
         $user = Healthcare_provider::where('email', $request->email)->first();
 
         return $this->success([
-            'user' => $user,
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'role' => $user->role,
             'token' => $user->createToken('API Token of ' . $user->name)->plainTextToken,
         ]);
     }

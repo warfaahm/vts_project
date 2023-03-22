@@ -80,7 +80,7 @@ class AuthUserController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Profile Update Successfull',
+            'message' => 'Profile Update Successfully',
             'data' => $data,
         ]);
     }
